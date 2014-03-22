@@ -1,3 +1,4 @@
+.DS_Store
 lib-cov
 *.seed
 *.log
@@ -13,3 +14,7 @@ results
 
 npm-debug.log
 node_modules
+sonos-auto-bookmarker/bin
+sonos-auto-bookmarker/obj/
+Libraries/Newtonsoft.Json/bin/
+Libraries/Newtonsoft.Json/obj/
