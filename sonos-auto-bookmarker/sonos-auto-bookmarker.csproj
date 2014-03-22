@@ -33,24 +33,29 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SONOSHttpAPI\Data\Zones.cs" />
-    <Compile Include="SONOSHttpAPI\Data\Coordinator.cs" />
-    <Compile Include="SONOSHttpAPI\Data\CurrentTrack.cs" />
-    <Compile Include="SONOSHttpAPI\Data\GroupState.cs" />
-    <Compile Include="SONOSHttpAPI\Data\Member.cs" />
-    <Compile Include="SONOSHttpAPI\Data\NextTrack.cs" />
-    <Compile Include="SONOSHttpAPI\Data\PlayMode.cs" />
-    <Compile Include="SONOSHttpAPI\Data\State.cs" />
-    <Compile Include="SONOSHttpAPI\GetZones.cs" />
+    <Compile Include="SONOSListener.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="SONOSHttpAPI\SONOSZonesUpdater.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\Coordinator.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\CurrentTrack.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\GroupState.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\Member.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\NextTrack.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\PlayMode.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\State.cs" />
+    <Compile Include="SONOSHttpAPI\Data\none\Zones.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="SONOSHttpAPI\" />
     <Folder Include="SONOSHttpAPI\Data\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="SONOSHttpAPI\Data\none\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\Newtonsoft.Json\Newtonsoft.Json.csproj">
@@ -59,6 +64,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="configuration.json" />
+    <Content Include="configuration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

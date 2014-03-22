@@ -1,3 +1,4 @@
 ﻿{
-  "SONOS_HTTP_API_URL": "http://berry:5005"
+  "SONOS_HTTP_API_URL": "http://berry:5005",
+  "UpdateIntervalSeconds": 2
 }
