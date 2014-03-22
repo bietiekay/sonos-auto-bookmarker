@@ -41,14 +41,14 @@
     <Compile Include="SONOSListener.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="SONOSHttpAPI\SONOSZonesUpdater.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\Coordinator.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\CurrentTrack.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\GroupState.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\Member.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\NextTrack.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\PlayMode.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\State.cs" />
-    <Compile Include="SONOSHttpAPI\Data\none\Zones.cs" />
+    <Compile Include="SONOSHttpAPI\Data\Coordinator.cs" />
+    <Compile Include="SONOSHttpAPI\Data\CurrentTrack.cs" />
+    <Compile Include="SONOSHttpAPI\Data\GroupState.cs" />
+    <Compile Include="SONOSHttpAPI\Data\Member.cs" />
+    <Compile Include="SONOSHttpAPI\Data\NextTrack.cs" />
+    <Compile Include="SONOSHttpAPI\Data\PlayMode.cs" />
+    <Compile Include="SONOSHttpAPI\Data\State.cs" />
+    <Compile Include="SONOSHttpAPI\Data\Zones.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

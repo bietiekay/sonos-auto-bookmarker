@@ -20,8 +20,6 @@ namespace sonosautobookmarker
 			Thread SONOSListenerThread = new Thread(new ThreadStart(_Thread.Run));
 			SONOSListenerThread.Start();
 			#endregion
-
-
 		}
 	}
 }

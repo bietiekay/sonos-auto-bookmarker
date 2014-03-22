@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SONOSHttpAPI
 {	
-	public class SONOSZones
+	public class SONOSZone
 	{
 		public string uuid { get; set; }
 		public Coordinator coordinator { get; set; }

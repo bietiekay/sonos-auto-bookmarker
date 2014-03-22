@@ -12,14 +12,14 @@ namespace sonosautobookmarker
 		{
 		}
 
-		public List<SONOSZones> UpdateSONOSZones(String BaseURL)
+		public List<SONOSZone> UpdateSONOSZones(String BaseURL)
 		{
 			// create a web client and get the data
 			String fullURL = BaseURL+"/zones";
 
 			WebClient client = new WebClient ();
 
-			List<SONOSZones> Zones = null;
+			List<SONOSZone> Zones = null;
 
 			try
 			{
@@ -28,7 +28,7 @@ namespace sonosautobookmarker
 				// hurray, we got a string!
 				// let's deserialize it!
 
-				Zones = JsonConvert.DeserializeObject<List<SONOSZones>>(JSONInput);
+				Zones = JsonConvert.DeserializeObject<List<SONOSZone>>(JSONInput);
 			}
 			catch(Exception e)
 			{
