@@ -12,6 +12,7 @@ namespace sonosautobookmarker
 		private Configuration myConfiguration;
 		private bool shutdown;
 		private SONOSZonesUpdater ZonesUpdater;
+		private Dictionary<String,int> RememberedPlayPositions;
 
 		public SONOSListener (Configuration incomingConfiguration)
 		{
@@ -21,16 +22,16 @@ namespace sonosautobookmarker
 		}
 
 		#region Helper Methods
-		public List<State> PlayingNow(List<SONOSZone> Zones)
+		public Dictionary<String,State> PlayingNow(List<SONOSZone> Zones)
 		{
-			List<State> Output = new List<State> ();
+			Dictionary<String,State> Output = new Dictionary<String,State> ();
 
 			foreach(SONOSZone Zone in Zones)
 			{
 				if (Zone.coordinator.state.playerState == "PLAYING")
 				{
 					// we have a winner!
-					Output.Add (Zone.coordinator.state);
+					Output.Add(Zone.coordinator.roomName,Zone.coordinator.state);
 				}
 			}
 
@@ -63,21 +64,24 @@ namespace sonosautobookmarker
 			
 				List<SONOSZone> Zones = ZonesUpdater.UpdateSONOSZones (myConfiguration.GetSONOSHTTPAPIURL ());
 
-				List<State> NowPlaying = PlayingNow (Zones);
+				Dictionary<String,State> NowPlaying = PlayingNow (Zones);
 
 
 				if (NowPlaying.Count == 0)
 					Console.WriteLine ("Nothing playing");
 
 				// go through all zones and find what is being played...
-				foreach(State Playing in NowPlaying)
+				foreach(String coordinator in NowPlaying.Keys)
 				{
+					State Playing = NowPlaying [coordinator];
 					// we have these information at hand now: title, album, artist, duration
 					// and from the State elapsedTime
 					// from the track information we build a hash
 					String Track = Playing.currentTrack.title + Playing.currentTrack.album + Playing.currentTrack.artist + Convert.ToString(Playing.currentTrack.duration);
+					String TrackHash = GetHashString (Track);
+					double TrackDonePercentage = (float)Playing.elapsedTime / (float)Playing.currentTrack.duration * 100;
 
-					Console.WriteLine (Playing.currentTrack.artist+" - "+Playing.currentTrack.title+" - "+Playing.elapsedTimeFormatted+" ("+GetHashString(Track)+")");
+					Console.WriteLine (coordinator+" - "+Playing.currentTrack.artist+" - "+Playing.currentTrack.title+" - "+Playing.elapsedTime+" - "+Playing.currentTrack.duration+" - "+String.Format("{0:0}%", TrackDonePercentage)+" ("+TrackHash+")");
 				}
 				Thread.Sleep (myConfiguration.GetUpdateIntervalSeconds()*1000);
 			}

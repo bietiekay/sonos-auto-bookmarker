@@ -1,6 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/SONOSListener.cs">
+    <Files>
+      <File FileName="sonos-auto-bookmarker/SONOSListener.cs" Line="83" Column="6" />
+      <File FileName="sonos-auto-bookmarker/SONOSHttpAPI/SONOSZonesUpdater.cs" Line="16" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -49,6 +49,7 @@
     <Compile Include="SONOSHttpAPI\Data\PlayMode.cs" />
     <Compile Include="SONOSHttpAPI\Data\State.cs" />
     <Compile Include="SONOSHttpAPI\Data\Zones.cs" />
+    <Compile Include="SONOSHttpAPI\SONOSTrackSeek.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
