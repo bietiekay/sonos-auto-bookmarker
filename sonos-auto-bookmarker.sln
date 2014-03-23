@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sonos-auto-bookmarker", "sonos-auto-bookmarker\sonos-auto-bookmarker.csproj", "{BD5F33EF-D6A4-4E96-8477-47D853D32507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "Libraries\Newtonsoft.Json\Newtonsoft.Json.csproj", "{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "Libraries\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.Build.0 = Release|Any CPU
 		{BD5F33EF-D6A4-4E96-8477-47D853D32507}.Debug|x86.ActiveCfg = Debug|x86
 		{BD5F33EF-D6A4-4E96-8477-47D853D32507}.Debug|x86.Build.0 = Debug|x86
 		{BD5F33EF-D6A4-4E96-8477-47D853D32507}.Release|x86.ActiveCfg = Release|x86
 		{BD5F33EF-D6A4-4E96-8477-47D853D32507}.Release|x86.Build.0 = Release|x86
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|x86.Build.0 = Debug|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|x86.ActiveCfg = Release|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = sonos-auto-bookmarker\sonos-auto-bookmarker.csproj

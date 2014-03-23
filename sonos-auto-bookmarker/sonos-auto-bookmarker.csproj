@@ -61,14 +61,14 @@
     <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Libraries\Newtonsoft.Json\Newtonsoft.Json.csproj">
-      <Project>{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}</Project>
-      <Name>Newtonsoft.Json</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="configuration.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

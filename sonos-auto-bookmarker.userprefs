@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/configuration.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Libraries/Newtonsoft.Json/Linq/Extensions.cs">
     <Files>
-      <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="117" Column="20" />
+      <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="1" Column="1" />
       <File FileName="sonos-auto-bookmarker/configuration.json" Line="3" Column="28" />
+      <File FileName="Libraries/Newtonsoft.Json/Linq/Extensions.cs" Line="50" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
