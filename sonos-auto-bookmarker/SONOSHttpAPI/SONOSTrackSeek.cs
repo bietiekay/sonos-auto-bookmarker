@@ -20,6 +20,7 @@ namespace sonosautobookmarker
 			String fullURL = BaseURL+"/"+Room+"/trackseek/"+Position;
 
 			WebClient client = new WebClient ();
+			client.Encoding = System.Text.Encoding.UTF8;
 
 			try
 			{

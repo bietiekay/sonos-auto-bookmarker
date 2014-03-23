@@ -21,6 +21,7 @@ namespace sonosautobookmarker
 			String fullURL = BaseURL+"/zones";
 
 			WebClient client = new WebClient ();
+			client.Encoding = System.Text.Encoding.UTF8;
 
 			List<SONOSZone> Zones = null;
 
