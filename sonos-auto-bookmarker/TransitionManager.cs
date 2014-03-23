@@ -123,6 +123,7 @@ namespace sonosautobookmarker
 					// yes it does...
 					Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
 					myConfiguration.AddOrUpdateKnownPosition (bookmark);
+                    myConfiguration.Save();
 				}
 			}
 
@@ -130,23 +131,24 @@ namespace sonosautobookmarker
 			{
 				// output Started Information...
 				Console.WriteLine (DateTime.Now.ToShortDateString()+" - Started: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
-
-				Bookmark storedBookmark = myConfiguration.GetBookmarkForHash (bookmark.Hash);
-
-				if (storedBookmark != null)
-				{
-					// only seek when the current position leads us to believe that the track has been restarted...
-					if (bookmark.Position < 10)
-					{
-						// we've found a play position, seek there!
-						Console.WriteLine (DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
-						SONOSTrackSeek.SeekTrack (myConfiguration.GetSONOSHTTPAPIURL(), storedBookmark.Position,bookmark.Coordinator);
-					}
+				
+                if (bookmark.Position < 10)
+                {
+                    Bookmark storedBookmark = myConfiguration.GetBookmarkForHash(bookmark.Hash);
+				    if (storedBookmark != null)
+				    {
+					    // only seek when the current position leads us to believe that the track has been restarted...
+					
+						    // we've found a play position, seek there!
+						    Console.WriteLine (DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
+						    SONOSTrackSeek.SeekTrack (myConfiguration.GetSONOSHTTPAPIURL(), storedBookmark.Position,bookmark.Coordinator);
+                            myConfiguration.Save();
+				    }
 				}
 			}
 
 			// decide wether we save or not
-			myConfiguration.Save ();
+			
 		}
 	}
 }

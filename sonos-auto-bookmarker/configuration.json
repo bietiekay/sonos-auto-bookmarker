@@ -1,8 +1,8 @@
 ﻿{
-	"SONOS_HTTP_API_URL":"http://berry:5005",
-	"UpdateIntervalSeconds":2,
+	"SONOS_HTTP_API_URL":"http://192.168.178.96:5005",
+	"UpdateIntervalSeconds":1,
 	"BookmarkOnlyLongerThanSeconds":600,
-	"MinimalSecondsPerSave":1,
+	"MinimalSecondsPerSave":60,
 	"MinimalChangesPerSave":1,
 	"Bookmarks":[]
 }

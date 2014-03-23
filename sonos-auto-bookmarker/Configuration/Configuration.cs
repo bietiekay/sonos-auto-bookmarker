@@ -41,7 +41,7 @@ namespace sonosautobookmarker
 		/// </summary>
 		public void Save()
 		{
-			if ((SecondsSinceLastSave() <= myConfiguration.MinimalSecondsPerSave) || (NumberOfChangesSinceLastSave() >= myConfiguration.MinimalChangesPerSave))
+            if ((SecondsSinceLastSave() >= myConfiguration.MinimalSecondsPerSave) || (NumberOfChangesSinceLastSave() >= myConfiguration.MinimalChangesPerSave))
 			{
 				Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Configuration.");
 				string output = JsonConvert.SerializeObject(myConfiguration);
@@ -84,16 +84,19 @@ namespace sonosautobookmarker
 					found = true;
 					break;
 				}
-				position++;
+                else
+				    position++;
 			}
 
 			if (found)
 			{
 				myConfiguration.Bookmarks [position] = newBookmark;
 			}
+            else
+                myConfiguration.Bookmarks.Add(newBookmark);
 
 			ChangesSinceLastSave++;
-			myConfiguration.Bookmarks.Add (newBookmark);
+			
 		}
 
 		/// <summary>
@@ -110,6 +113,7 @@ namespace sonosautobookmarker
 			{
 				if (Hash == _bookmark.Hash) {
 					found = true;
+                    break;
 				} else
 					position++;
 			}
