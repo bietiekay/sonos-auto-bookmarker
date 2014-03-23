@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SONOSHttpAPI;
 using System.Net;
 using System.Threading;
+using System.Web;
 
 namespace sonosautobookmarker
 {
@@ -13,8 +14,10 @@ namespace sonosautobookmarker
 	{
 		public static void SeekTrack(String BaseURL,int Position,String Room)
 		{
+			var encodedRoom = HttpUtility.UrlEncode(Room);
+
 			// create a web client and get the data
-			String fullURL = BaseURL+"/"+Room+"/trackseek/"+Position;
+			String fullURL = BaseURL+"/"+encodedRoom+"/trackseek/"+Position;
 
 			WebClient client = new WebClient ();
 
