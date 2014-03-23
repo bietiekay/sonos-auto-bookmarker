@@ -135,9 +135,13 @@ namespace sonosautobookmarker
 
 				if (storedBookmark != null)
 				{
-					// we've found a play position, seek there!
-					Console.WriteLine (DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
-					SONOSTrackSeek.SeekTrack (myConfiguration.GetSONOSHTTPAPIURL(), storedBookmark.Position,bookmark.Coordinator);
+					// only seek when the current position leads us to believe that the track has been restarted...
+					if (bookmark.Position < 10)
+					{
+						// we've found a play position, seek there!
+						Console.WriteLine (DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
+						SONOSTrackSeek.SeekTrack (myConfiguration.GetSONOSHTTPAPIURL(), storedBookmark.Position,bookmark.Coordinator);
+					}
 				}
 			}
 
