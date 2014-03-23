@@ -50,13 +50,15 @@
     <Compile Include="SONOSHttpAPI\Data\State.cs" />
     <Compile Include="SONOSHttpAPI\Data\Zones.cs" />
     <Compile Include="SONOSHttpAPI\SONOSTrackSeek.cs" />
+    <Compile Include="Configuration\Bookmark.cs" />
+    <Compile Include="TransitionManager.cs" />
+    <Compile Include="HashTrack.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="SONOSHttpAPI\" />
     <Folder Include="SONOSHttpAPI\Data\" />
     <Folder Include="Configuration\" />
-    <Folder Include="SONOSHttpAPI\Data\none\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\Newtonsoft.Json\Newtonsoft.Json.csproj">

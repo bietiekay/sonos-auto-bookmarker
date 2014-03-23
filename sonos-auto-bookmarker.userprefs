@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/SONOSListener.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/configuration.json">
     <Files>
-      <File FileName="sonos-auto-bookmarker/SONOSListener.cs" Line="83" Column="6" />
-      <File FileName="sonos-auto-bookmarker/SONOSHttpAPI/SONOSZonesUpdater.cs" Line="16" Column="4" />
+      <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="117" Column="20" />
+      <File FileName="sonos-auto-bookmarker/configuration.json" Line="3" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/bietiekay/code/sonos-auto-bookmarker/sonos-auto-bookmarker/SONOSListener.cs" line="94" column="36" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

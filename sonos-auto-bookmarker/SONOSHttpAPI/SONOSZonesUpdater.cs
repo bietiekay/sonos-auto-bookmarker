@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 
 namespace sonosautobookmarker
 {
+	/// <summary>
+	/// updates all zone information
+	/// </summary>
 	public class SONOSZonesUpdater
 	{
 		public SONOSZonesUpdater ()

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using SONOSHttpAPI;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace sonosautobookmarker
 {
@@ -12,13 +10,23 @@ namespace sonosautobookmarker
 		private Configuration myConfiguration;
 		private bool shutdown;
 		private SONOSZonesUpdater ZonesUpdater;
-		private Dictionary<String,int> RememberedPlayPositions;
+		private Dictionary<String,State> NowPlayingBefore;
+		private Dictionary<String,State> NowPlaying;
+		private TransitionManager TManager;
 
 		public SONOSListener (Configuration incomingConfiguration)
 		{
 			myConfiguration = incomingConfiguration;
 			shutdown = false;
 			ZonesUpdater = new SONOSZonesUpdater ();
+			NowPlaying = null;
+			NowPlayingBefore = null;
+			TManager = new TransitionManager (incomingConfiguration);
+		}
+
+		public void Shutdown()
+		{
+			shutdown = true;
 		}
 
 		#region Helper Methods
@@ -37,22 +45,6 @@ namespace sonosautobookmarker
 
 			return Output;
 		}
-
-		public static byte[] GetHash(string inputString)
-		{
-			HashAlgorithm algorithm = MD5.Create();  // SHA1.Create()
-			return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
-		}
-
-		public static string GetHashString(string inputString)
-		{
-			StringBuilder sb = new StringBuilder();
-			foreach (byte b in GetHash(inputString))
-				sb.Append(b.ToString("X2"));
-
-			return sb.ToString();
-		}
-
 		#endregion
 
 		#region Thread Method
@@ -62,32 +54,49 @@ namespace sonosautobookmarker
 
 			while (!shutdown) {
 			
-				List<SONOSZone> Zones = ZonesUpdater.UpdateSONOSZones (myConfiguration.GetSONOSHTTPAPIURL ());
+				try{
+					// get the update from the SONOS system...
+					List<SONOSZone> Zones = ZonesUpdater.UpdateSONOSZones (myConfiguration.GetSONOSHTTPAPIURL ());
 
-				Dictionary<String,State> NowPlaying = PlayingNow (Zones);
+					// save before state...
+					NowPlayingBefore = NowPlaying;
+					// get new State...
+					NowPlaying = PlayingNow (Zones);
 
+/*					if (NowPlaying.Count == 0)
+						Console.WriteLine ("Nothing playing");
 
-				if (NowPlaying.Count == 0)
-					Console.WriteLine ("Nothing playing");
+					// go through all zones and find what is being played...
+					foreach(String coordinator in NowPlaying.Keys)
+					{
+						State Playing = NowPlaying [coordinator];
 
-				// go through all zones and find what is being played...
-				foreach(String coordinator in NowPlaying.Keys)
+						// we have these information at hand now: title, album, artist, duration
+						// and from the State elapsedTime
+						// from the track information we build a hash
+						String Track = Playing.currentTrack.title + Playing.currentTrack.album + Playing.currentTrack.artist + Convert.ToString(Playing.currentTrack.duration);
+						String TrackHash = GetHashString (Track);
+						double TrackDonePercentage = (float)Playing.elapsedTime / (float)Playing.currentTrack.duration * 100;
+
+						Console.WriteLine (coordinator+" - "+Playing.currentTrack.artist+" - "+Playing.currentTrack.title+" - "+Playing.elapsedTime+" - "+Playing.currentTrack.duration+" - "+String.Format("{0:0}%", TrackDonePercentage)+" ("+TrackHash+")");
+					}
+					*/
+					// check what changed from the last update...
+					if (NowPlayingBefore != null)
+					{
+						// Check for Transitions
+						TManager.CalculateTransitions(NowPlayingBefore,NowPlaying);
+					}
+				}
+				catch(Exception e)
 				{
-					State Playing = NowPlaying [coordinator];
-					// we have these information at hand now: title, album, artist, duration
-					// and from the State elapsedTime
-					// from the track information we build a hash
-					String Track = Playing.currentTrack.title + Playing.currentTrack.album + Playing.currentTrack.artist + Convert.ToString(Playing.currentTrack.duration);
-					String TrackHash = GetHashString (Track);
-					double TrackDonePercentage = (float)Playing.elapsedTime / (float)Playing.currentTrack.duration * 100;
-
-					Console.WriteLine (coordinator+" - "+Playing.currentTrack.artist+" - "+Playing.currentTrack.title+" - "+Playing.elapsedTime+" - "+Playing.currentTrack.duration+" - "+String.Format("{0:0}%", TrackDonePercentage)+" ("+TrackHash+")");
+					// pokemon handling, catching them all, because we want this to run "unlimitedly"
+					Console.WriteLine ("Pokemon: "+e.Message);
 				}
 				Thread.Sleep (myConfiguration.GetUpdateIntervalSeconds()*1000);
 			}
 		}
 		#endregion
-
 	}
 }
 
