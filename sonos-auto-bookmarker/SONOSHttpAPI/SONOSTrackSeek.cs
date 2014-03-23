@@ -14,10 +14,10 @@ namespace sonosautobookmarker
 	{
 		public static void SeekTrack(String BaseURL,int Position,String Room)
 		{
-			var encodedRoom = HttpUtility.UrlEncode(Room);
+			//String encodedRoom = HttpUtility.UrlEncode(Room);
 
 			// create a web client and get the data
-			String fullURL = BaseURL+"/"+encodedRoom+"/trackseek/"+Position;
+			String fullURL = BaseURL+"/"+Room+"/trackseek/"+Position;
 
 			WebClient client = new WebClient ();
 
