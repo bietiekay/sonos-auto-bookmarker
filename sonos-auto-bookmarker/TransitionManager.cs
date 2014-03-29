@@ -131,7 +131,7 @@ namespace sonosautobookmarker
 						myConfiguration.Save ();
 					} else {
 						// no it does not...so delete it!
-						GetBookmarkForHash (bookmark.Hash);
+						myConfiguration.GetBookmarkForHash (bookmark.Hash);
 					}
 				}
 			}
