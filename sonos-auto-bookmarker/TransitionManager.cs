@@ -118,12 +118,21 @@ namespace sonosautobookmarker
 				Console.WriteLine (DateTime.Now.ToShortDateString()+" - Stopped: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
 
 				// check if this track qualifies to be saved...
+				// these are the requirements:
+				//  - the track that stopped is longer than the configured number of seconds (BookmarkOnlyLongerThanSeconds in configuration.json)
+				//  - the position within the track is not within the last seconds (number of seconds configurable in configuration.json by UpdateIntervalSeconds)
 				if (bookmark.Duration >= myConfiguration.GetBookmarkOnlyLongerThanSeconds())
 				{
-					// yes it does...
-					Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
-					myConfiguration.AddOrUpdateKnownPosition (bookmark);
-                    myConfiguration.Save();
+					// check if this bookmark is within the last UpdateIntervalSeconds of the track - then we do not save but we delete the bookmark
+					if (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ())) {
+						// yes it does...so save it!
+						Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
+						myConfiguration.AddOrUpdateKnownPosition (bookmark);
+						myConfiguration.Save ();
+					} else {
+						// no it does not...so delete it!
+						GetBookmarkForHash (bookmark.Hash);
+					}
 				}
 			}
 
