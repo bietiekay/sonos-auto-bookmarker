@@ -34,6 +34,8 @@ namespace sonosautobookmarker
 			}
 			if (myConfiguration.Bookmarks == null)
 				myConfiguration.Bookmarks = new List<Bookmark> ();
+			if (myConfiguration.IgnoreTitleNamePattern == null)
+				myConfiguration.IgnoreTitleNamePattern = new List<String> ();
 		}
 
 		#region Save State

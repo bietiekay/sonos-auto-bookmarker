@@ -5,5 +5,5 @@
 	"MinimalSecondsPerSave":60,
 	"MinimalChangesPerSave":1,
 	"Bookmarks":[],
-	"IgnoreNamePattern":[]
+	"IgnoreTitleNamePattern":[]
 }
