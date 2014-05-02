@@ -4,5 +4,6 @@
 	"BookmarkOnlyLongerThanSeconds":600,
 	"MinimalSecondsPerSave":60,
 	"MinimalChangesPerSave":1,
-	"Bookmarks":[]
+	"Bookmarks":[],
+	"IgnoreNamePattern":[]
 }

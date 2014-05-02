@@ -13,6 +13,7 @@ namespace sonosautobookmarker
 		public int MinimalSecondsPerSave { get; set; }
 		public int MinimalChangesPerSave { get; set; }
 		public List<Bookmark> Bookmarks { get; set; }
+		public List<String> IgnoreTitleNamePattern { get; set; }
 	}
 
 	public class Configuration
@@ -156,6 +157,11 @@ namespace sonosautobookmarker
 		public int GetMinimalSecondsPerSave()
 		{
 			return myConfiguration.MinimalSecondsPerSave;
+		}
+
+		public List<String> GetIgnoreTitleNamePatterns()
+		{
+			return myConfiguration.IgnoreTitleNamePattern;
 		}
 
 		#endregion

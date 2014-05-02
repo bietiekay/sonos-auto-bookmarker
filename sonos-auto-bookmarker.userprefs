@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/TransitionManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/Configuration/Configuration.cs">
     <Files>
       <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="134" Column="23" />
+      <File FileName="sonos-auto-bookmarker/Configuration/Bookmark.cs" Line="15" Column="3" />
+      <File FileName="sonos-auto-bookmarker/Configuration/Configuration.cs" Line="73" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

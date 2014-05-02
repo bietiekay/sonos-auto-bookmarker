@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using SONOSHttpAPI;
 
@@ -23,7 +24,7 @@ namespace sonosautobookmarker
 		/// <param name="PlayingState">Playing state.</param>
 		public Dictionary<String, Bookmark> MergeCoordinatorsAndHandleConflicts(Dictionary<String,State> PlayingState)
 		{
-			// firs
+			// first
 			Dictionary<String, Bookmark> MergedPlayingTitles = new Dictionary<string, Bookmark> ();
 
 			foreach(String coordinator in PlayingState.Keys)
@@ -123,15 +124,35 @@ namespace sonosautobookmarker
 				//  - the position within the track is not within the last seconds (number of seconds configurable in configuration.json by UpdateIntervalSeconds)
 				if (bookmark.Duration >= myConfiguration.GetBookmarkOnlyLongerThanSeconds())
 				{
-					// check if this bookmark is within the last UpdateIntervalSeconds of the track - then we do not save but we delete the bookmark
-					if (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ())) {
-						// yes it does...so save it!
-						Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
-						myConfiguration.AddOrUpdateKnownPosition (bookmark);
-						myConfiguration.Save ();
-					} else {
-						// no it does not...so delete it!
-						myConfiguration.GetBookmarkForHash (bookmark.Hash);
+					bool matchesTitlePattern = false;
+					// further check if this one matches any pattern
+
+					#region Regular Expression Check for the title of the track
+					foreach(String RegExpPattern in myConfiguration.GetIgnoreTitleNamePatterns())
+					{
+						Match match = Regex.Match(bookmark.Title, RegExpPattern, RegexOptions.IgnoreCase);
+
+						// Here we check the Match instance.
+						if (match.Success)
+						{
+							Console.WriteLine(DateTime.Now.ToShortDateString () + " - not saving since title matches ignore pattern: "+RegExpPattern);
+							matchesTitlePattern = true;
+							break;
+						}
+					}
+					#endregion
+
+					if (!matchesTitlePattern) {
+						// check if this bookmark is within the last UpdateIntervalSeconds of the track - then we do not save but we delete the bookmark
+						if (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ())) {
+							// yes it does...so save it!
+							Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
+							myConfiguration.AddOrUpdateKnownPosition (bookmark);
+							myConfiguration.Save ();
+						} else {
+							// no it does not...so delete it!
+							myConfiguration.GetBookmarkForHash (bookmark.Hash);
+						}
 					}
 				}
 			}
