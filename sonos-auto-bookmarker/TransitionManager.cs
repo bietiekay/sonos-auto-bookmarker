@@ -116,7 +116,7 @@ namespace sonosautobookmarker
 			foreach(Bookmark bookmark in Stopped)
 			{
 				// output Stopped Information...
-				Console.WriteLine (DateTime.Now.ToShortDateString()+" - Stopped: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
+				Console.WriteLine (DateTime.Now.ToShortTimeString()+" - "+DateTime.Now.ToShortDateString()+" - Stopped: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
 
 				// check if this track qualifies to be saved...
 				// these are the requirements:
@@ -135,7 +135,7 @@ namespace sonosautobookmarker
 						// Here we check the Match instance.
 						if (match.Success)
 						{
-							Console.WriteLine(DateTime.Now.ToShortDateString () + " - not saving since title matches ignore pattern: "+RegExpPattern);
+							Console.WriteLine(DateTime.Now.ToShortTimeString()+" - "+DateTime.Now.ToShortDateString () + " - not saving since title matches ignore pattern: "+RegExpPattern);
 							matchesTitlePattern = true;
 							break;
 						}
@@ -146,7 +146,7 @@ namespace sonosautobookmarker
 						// check if this bookmark is within the last UpdateIntervalSeconds of the track - then we do not save but we delete the bookmark
 						if ((bookmark.Position != 0) && (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ()))) {
 							// yes it does...so save it!
-							Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
+							Console.WriteLine (DateTime.Now.ToShortTimeString()+" - "+DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
 							myConfiguration.AddOrUpdateKnownPosition (bookmark);
 							myConfiguration.Save ();
 						} else {
@@ -160,7 +160,7 @@ namespace sonosautobookmarker
 			foreach(Bookmark bookmark in Started)
 			{
 				// output Started Information...
-				Console.WriteLine (DateTime.Now.ToShortDateString()+" - Started: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
+				Console.WriteLine (DateTime.Now.ToShortTimeString()+" - "+DateTime.Now.ToShortDateString()+" - Started: " + bookmark.Artist + " - "+ bookmark.Title+ " - "+bookmark.Position+"/"+bookmark.Duration);
 				
                 if (bookmark.Position < 10)
                 {
@@ -170,7 +170,7 @@ namespace sonosautobookmarker
 					    // only seek when the current position leads us to believe that the track has been restarted...
 					
 						    // we've found a play position, seek there!
-						    Console.WriteLine (DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
+							Console.WriteLine (DateTime.Now.ToShortTimeString()+" - "+DateTime.Now.ToShortDateString () + " - Found Bookmark, now seeking: " + storedBookmark.Position + "@" + bookmark.Hash);
 						    SONOSTrackSeek.SeekTrack (myConfiguration.GetSONOSHTTPAPIURL(), storedBookmark.Position,bookmark.Coordinator);
                             myConfiguration.Save();
 				    }
