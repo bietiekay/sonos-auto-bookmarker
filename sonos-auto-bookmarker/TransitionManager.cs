@@ -95,7 +95,7 @@ namespace sonosautobookmarker
 
 		#endregion
 
-
+		#region Transition calculations
 		/// <summary>
 		/// Calculates the transitions.
 		/// </summary>
@@ -144,7 +144,7 @@ namespace sonosautobookmarker
 
 					if (!matchesTitlePattern) {
 						// check if this bookmark is within the last UpdateIntervalSeconds of the track - then we do not save but we delete the bookmark
-						if (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ())) {
+						if ((bookmark.Position != 0) && (bookmark.Position <= (bookmark.Duration - myConfiguration.GetUpdateIntervalSeconds ()))) {
 							// yes it does...so save it!
 							Console.WriteLine (DateTime.Now.ToShortDateString () + " - Saving Bookmark: " + bookmark.Position + "@" + bookmark.Hash);
 							myConfiguration.AddOrUpdateKnownPosition (bookmark);
@@ -177,9 +177,9 @@ namespace sonosautobookmarker
 				}
 			}
 
-			// decide wether we save or not
-			
+			// decide wether we save or not		
 		}
+		#endregion
 	}
 }
 

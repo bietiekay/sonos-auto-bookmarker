@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/configuration.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sonos-auto-bookmarker/HashTrack.cs">
     <Files>
-      <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="133" Column="47" />
+      <File FileName="sonos-auto-bookmarker/TransitionManager.cs" Line="1" Column="1" />
       <File FileName="sonos-auto-bookmarker/Configuration/Bookmark.cs" Line="1" Column="1" />
-      <File FileName="sonos-auto-bookmarker/Configuration/Configuration.cs" Line="16" Column="45" />
-      <File FileName="sonos-auto-bookmarker/configuration.json" Line="8" Column="28" />
+      <File FileName="sonos-auto-bookmarker/Configuration/Configuration.cs" Line="1" Column="1" />
+      <File FileName="sonos-auto-bookmarker/configuration.json" Line="1" Column="1" />
       <File FileName="sonos-auto-bookmarker/SONOSListener.cs" Line="1" Column="1" />
-      <File FileName="sonos-auto-bookmarker/HashTrack.cs" Line="1" Column="1" />
+      <File FileName="sonos-auto-bookmarker/HashTrack.cs" Line="35" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
