@@ -1,5 +1,5 @@
 ﻿{
-	"SONOS_HTTP_API_URL":"http://192.168.178.96:5005",
+	"SONOS_HTTP_API_URL":"http://poppyseeds.fritz.box:6006",
 	"UpdateIntervalSeconds":1,
 	"BookmarkOnlyLongerThanSeconds":600,
 	"MinimalSecondsPerSave":60,
